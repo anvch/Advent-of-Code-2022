@@ -1,4 +1,4 @@
-def getMaxCalories():
+def getMaxCalories() -> list():
 
     f = open("Elf Calorie List.txt", "r")
 
@@ -17,9 +17,21 @@ def getMaxCalories():
     f.close()
 
     max_cal = max(total_calories)
-
     print(max_cal)
 
+    return total_calories
 
-getMaxCalories()
+
+def getTopThree(total_calories: list()):
+    
+    top3 = 0
+
+    for i in range(3):
+        top = max(total_calories)
+        top3 += top
+        total_calories.remove(top)
+
+    print(top3)
+
+getTopThree(getMaxCalories())
 
