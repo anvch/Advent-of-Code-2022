@@ -4,7 +4,7 @@ def getTotalScore():
     score = 0
 
     for line in f:
-        game = line.strip()
+        game = line.split()
         opp_move = game[0]
         my_move = game[1]
 
@@ -45,3 +45,44 @@ def getTotalScore():
 
 
 getTotalScore()
+
+def getRealScore():
+    f = open("RPS Strategy Guide.txt", "r")
+
+    score = 0
+
+    for line in f:
+        game = line.split()
+        opp_move = game[0]
+        outcome = game[1]
+
+        if outcome == "X": # lose
+            if opp_move == "A":
+                score += 3
+            if opp_move == "B":
+                score += 1
+            if opp_move == "C":
+                score += 2
+
+        if outcome == "Y": # draw
+            score += 3
+            if opp_move == "A":
+                score += 1
+            if opp_move == "B":
+                score += 2
+            if opp_move == "C":
+                score += 3
+
+        if outcome == "Z": # win
+            score += 6
+            if opp_move == "A":
+                score += 2
+            if opp_move == "B":
+                score += 3
+            if opp_move == "C":
+                score += 1
+
+    print(score)
+
+
+getRealScore()
